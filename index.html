@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuandEstCeQuOnKen.eu</title>
+    <script>
+        function createCountdown() {
+            var timing = document.getElementById("timing").value;
+            var message = document.getElementById("message").value;
+
+            // Validation de l'entrée de timing (ajuster selon vos besoins)
+            if (!timing || isNaN(timing) || timing <= 0) {
+                alert("Veuillez entrer un timing valide en minutes.");
+                return;
+            }
+
+            // Encodage en base64 du message et du timing
+            var encodedMessage = btoa(message);
+            var encodedTiming = btoa(timing);
+
+            // Création du lien avec les paramètres encodés
+            var countdownLink = "https://www.quandestcequonken.eu/countdown.html?timing=" + encodedTiming + "&message=" + encodedMessage;
+
+            // Affichage du lien
+            document.getElementById("countdownLink").innerHTML = "Lien de compte à rebours : <a href='" + countdownLink + "' target='_blank'>" + countdownLink + "</a>";
+        }
+    </script>
+</head>
+<body>
+    <h1>QuandEstCeQuOnKen.eu</h1>
+
+    <label for="timing">Choisissez le timing (en minutes) :</label>
+    <input type="number" id="timing" required>
+
+    <label for="message">Ajoutez un message court :</label>
+    <input type="text" id="message">
+
+    <button onclick="createCountdown()">Générer le compte à rebours</button>
+
+    <div id="countdownLink"></div>
+
+    <hr>
+
+    <h2>Contact</h2>
+    <p>Des questions ? Envoyez-nous un email à <a href="mailto:contact@quandestcequonken.eu">contact@quandestcequonken.eu</a>.</p>
+
+    <h2>Mentions légales</h2>
+    <p>Ce site est destiné à un usage ludique. Consultez nos mentions légales pour plus d'informations.</p>
+</body>
+</html>

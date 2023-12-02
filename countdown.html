@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compte à Rebours</title>
+    <script>
+        function decodeParams() {
+            // Récupération des paramètres depuis l'URL
+            var urlParams = new URLSearchParams(window.location.search);
+            var encodedTiming = urlParams.get('timing');
+            var encodedMessage = urlParams.get('message');
+
+            // Décodage des paramètres
+            var timing = atob(encodedTiming);
+            var message = atob(encodedMessage);
+
+            return { timing: timing, message: message };
+        }
+
+        function startCountdown() {
+            var params = decodeParams();
+
+            // Validation des paramètres
+            if (!params.timing || isNaN(params.timing) || params.timing <= 0 || !params.message) {
+                alert("Paramètres invalides. Veuillez vérifier le lien.");
+                return;
+            }
+
+            // Conversion du timing en millisecondes
+            var countdownTime = params.timing * 60 * 1000;
+
+            // Affichage du message
+            document.getElementById("message").innerText = "Message : " + params.message;
+
+            // Définition du compte à rebours
+            var countdownInterval = setInterval(function() {
+                countdownTime -= 1000;
+                var minutes = Math.floor((countdownTime % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((countdownTime % (1000 * 60)) / 1000);
+
+                // Affichage du compte à rebours
+                document.getElementById("countdown").innerText = minutes + "m " + seconds + "s";
+
+                // Fin du compte à rebours
+                if (countdownTime <= 0) {
+                    clearInterval(countdownInterval);
+                    document.getElementById("countdown").innerText = "Temps écoulé !";
+                }
+            }, 1000);
+        }
+
+        // Lancer le compte à rebours au chargement de la page
+        window.onload = startCountdown;
+    </script>
+</head>
+<body>
+    <h1>Compte à Rebours</h1>
+    <p id="message"></p>
+    <p id="countdown"></p>
+</body>
+</html>
+
