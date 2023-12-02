@@ -168,6 +168,39 @@
             // Redirection vers l'URL Google Agenda
             window.location.href = googleCalendarUrl;
         }
+
+    
+        function createAndroidReminder() {
+        var params = decodeParams();
+
+        // Validation des paramètres
+        if (!params.timing || params.timing <= Date.now() || !params.message) {
+            alert("Paramètres invalides. Veuillez vérifier le lien.");
+            return;
+        }
+
+        // Création de l'URL pour le rappel sur Android
+        var androidReminderUrl = "https://www.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(params.message) + "&dates=" + params.timing.toISOString().replace(/-|:|\.\d+/g, "") + "/" + (new Date(params.timing.getTime() + 60 * 60 * 1000)).toISOString().replace(/-|:|\.\d+/g, "");
+
+        // Redirection vers l'URL de rappel Android
+        window.location.href = androidReminderUrl;
+    }
+
+    function createIPhoneReminder() {
+        var params = decodeParams();
+
+        // Validation des paramètres
+        if (!params.timing || params.timing <= Date.now() || !params.message) {
+            alert("Paramètres invalides. Veuillez vérifier le lien.");
+            return;
+        }
+
+        // Création de l'URL pour le rappel sur iPhone
+        var iphoneReminderUrl = "calshow:" + params.timing.toISOString().replace(/-|:|\.\d+/g, "");
+
+        // Redirection vers l'URL de rappel iPhone
+        window.location.href = iphoneReminderUrl;
+    }
 </script>
 </head>
 <body onload="startCountdown()">
@@ -181,8 +214,16 @@
         <p id="countdown"></p>
 
         <!-- Bouton pour ajouter à Google Agenda -->
-        <button onclick="addToGoogleCalendar()">Ajouter à Google Agenda</button>
-    </div>
+<!-- Bouton pour ajouter à Google Agenda -->
+<button onclick="addToGoogleCalendar()">Ajouter à Google Agenda</button>
+
+<!-- Bouton pour créer un rappel sur Android -->
+<button onclick="createAndroidReminder()">Créer un rappel sur Android</button>
+
+<!-- Bouton pour créer un rappel sur iPhone -->
+<button onclick="createIPhoneReminder()">Créer un rappel sur iPhone</button>
+
+</div>
 
     <hr>
 
