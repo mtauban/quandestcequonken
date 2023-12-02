@@ -77,42 +77,42 @@
         }
     </style>
    <script>
-       function createCountdown() {
-           var timingInput = document.getElementById("timing");
-           var timing = new Date(timingInput.value).getTime();
+    function createCountdown() {
+        var timingInput = document.getElementById("timing");
+        var timing = new Date(timingInput.value).getTime();
 
-           if (!timing || timing <= Date.now()) {
-               alert("Veuillez choisir une date et une heure future.");
-               return;
-           }
+        if (!timing || timing <= Date.now()) {
+            alert("Veuillez choisir une date et une heure future.");
+            return;
+        }
 
-           var encodedTiming = btoa(timing);
-           var message = document.getElementById("message").value;
-           var encodedMessage = btoa(message);
+        var encodedTiming = btoa(timing);
+        var message = document.getElementById("message").value;
+        var encodedMessage = btoa(message);
 
-           var countdownLink = "https://www.quandestcequonken.eu/countdown.html?timing=" + encodedTiming + "&message=" + encodedMessage;
+        var countdownLink = "https://www.quandestcequonken.eu/countdown.html?timing=" + encodedTiming + "&message=" + encodedMessage;
 
-           document.getElementById("countdownLink").innerHTML = "Lien de compte à rebours : <a href='" + countdownLink + "' target='_blank'>" + countdownLink + "</a>";
+        document.getElementById("countdownLink").innerHTML = "Lien de compte à rebours : <a href='" + countdownLink + "' target='_blank'>" + countdownLink + "</a>";
 
-           // Ajout du bouton "Copier le lien"
-           var copyButton = document.getElementById("copyButton");
-           copyButton.style.display = "block";
-           copyButton.setAttribute("data-clipboard-text", countdownLink);
-       }
+        // Ajout du bouton "Copier le lien"
+        var copyButton = document.getElementById("copyButton");
+        copyButton.style.display = "block";
+        copyButton.setAttribute("data-clipboard-text", countdownLink);
+    }
 
-       // Fonction pour copier le texte dans le presse-papiers
-       function copyToClipboard() {
-           var copyText = document.getElementById("countdownLink");
-           var textArea = document.createElement("textarea");
-           textArea.value = copyText.textContent;
-           document.body.appendChild(textArea);
-           textArea.select();
-           document.execCommand('copy');
-           document.body.removeChild(textArea);
+    // Fonction pour copier le texte dans le presse-papiers
+    function copyToClipboard() {
+        var copyText = document.getElementById("countdownLink");
+        var textArea = document.createElement("textarea");
+        textArea.value = copyText.textContent;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
 
-           alert("Lien copié dans le presse-papiers !");
-       }
-   </script>
+        alert("Lien copié dans le presse-papiers !");
+    }
+</script>
 </head>
 <body>
    <h1>🍆 QuandEstCeQuOnKen.eu 💦</h1>

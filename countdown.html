@@ -56,69 +56,65 @@
             text-decoration: underline;
         }
     </style>
-    <script>
-        function decodeParams() {
-            // Récupération des paramètres depuis l'URL
-            var urlParams = new URLSearchParams(window.location.search);
-            var encodedTiming = urlParams.get('timing');
-            var encodedMessage = urlParams.get('message');
+  <script>
+    function decodeParams() {
+        // Récupération des paramètres depuis l'URL
+        var urlParams = new URLSearchParams(window.location.search);
+        var encodedTiming = urlParams.get('timing');
+        var encodedMessage = urlParams.get('message');
 
-            // Décodage des paramètres
-            var timing = atob(encodedTiming);
-            var message = atob(encodedMessage);
+        // Décodage des paramètres
+        var timing = atob(encodedTiming);
+        var message = atob(encodedMessage);
 
-            return { timing: timing, message: message };
+        return { timing: timing, message: message };
+    }
+
+    function startCountdown() {
+        var params = decodeParams();
+
+        // Validation des paramètres
+        if (!params.timing || params.timing <= Date.now() || !params.message) {
+            alert("Paramètres invalides. Veuillez vérifier le lien.");
+            return;
         }
 
-        function startCountdown() {
-            var params = decodeParams();
+        // Affichage du message
+        document.getElementById("message").innerText = params.message;
 
-            // Validation des paramètres
-            if (!params.timing || params.timing <= Date.now() || !params.message) {
-                alert("Paramètres invalides. Veuillez vérifier le lien.");
-                return;
-            }
+        // Définition du compte à rebours
+        var countdownInterval = setInterval(function() {
+            var now = Date.now();
+            var remainingTime = params.timing - now;
 
-            // Conversion de la date en millisecondes
-            var countdownTime = params.timing - Date.now();
-
-            // Affichage du message
-            document.getElementById("message").innerText = params.message;
-
-            // Définition du compte à rebours
-            var countdownInterval = setInterval(function() {
-                countdownTime -= 1000;
-                var minutes = Math.floor((countdownTime % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((countdownTime % (1000 * 60)) / 1000);
-
-                // Affichage du compte à rebours
+            // Affichage du compte à rebours
+            if (remainingTime > 0) {
+                var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
                 document.getElementById("countdown").innerText = minutes + "m " + seconds + "s";
-
-                // Fin du compte à rebours
-                if (countdownTime <= 0) {
-                    clearInterval(countdownInterval);
-                    document.getElementById("countdown").innerHTML = "Temps écoulé ! 😏 Alors, c'était comment ? 😉<br><a href='index.html'>Créez votre propre compte à rebours</a>";
-                }
-            }, 1000);
-        }
-
-        window.onload = startCountdown;
-
-    </script>
+            } else {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "Temps écoulé ! 😏 Alors, c'était comment ? 😉<br><a href='index.html'>Créez votre propre compte à rebours</a>";
+            }
+        }, 1000);
+    }
+</script>
 </head>
-<body>
-    <h1>Compte à Rebours 🍆💦</h1>
-    <p>Bienvenue sur QuandEstCeQuOnKen.eu, l'outil ultime pour pimenter votre vie amoureuse ! Votre partenaire a planifié quelque chose de spécial et vous allez bientôt "prendre cher". Soyez prêt(e) ! 😏</p>
+<body onload="startCountdown()">
+<h1>Quand est-ce que tu vas ken  🍆💦 ?</h1>
+<p>Bienvenue sur QuandEstCeQuOnKen.eu ! Votre partenaire a planifié quelque chose de spécial, et vous allez bientôt "prendre cher". Soyez prêt(e) ! 😏</p>
 
-    <p id="message"></p>
-    <p id="countdown"></p>
+<p id="message"></p>
+<p id="countdown"></p>
 
-    <hr>
+<hr>
 
-    <h2>Contact</h2>
-    <p>Des questions ? Envoyez-nous un email à <a href="mailto:contact@quandestcequonken.eu">contact@quandestcequonken.eu</a>.</p>
+<p>Dis a ton partenaire combien de temps il doit attendre sur <a href="https://www.quandestcequonken.eu">quandestcequonken.eu</a></p>
 
-    <h2>Mentions légales</h2>
-    <p>Ce site est destiné à un usage ludique. Consultez nos mentions légales pour plus d'informations.</p>
+<h2>Contact</h2>
+<p>Des questions ? Envoyez-nous un email à <a href="mailto:contact@quandestcequonken.eu">contact@quandestcequonken.eu</a>.</p>
+
+<h2>Mentions légales</h2>
+<p>Ce site est destiné à un usage ludique. Consultez nos mentions légales pour plus d'informations.</p>
 </body>
 </html>
