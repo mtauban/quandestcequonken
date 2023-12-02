@@ -76,45 +76,67 @@
             text-decoration: underline;
         }
     </style>
-    <script>
-        function createCountdown() {
-            var timingInput = document.getElementById("timing");
-            var timing = new Date(timingInput.value).getTime();
+   <script>
+       function createCountdown() {
+           var timingInput = document.getElementById("timing");
+           var timing = new Date(timingInput.value).getTime();
 
-            if (!timing || timing <= Date.now()) {
-                alert("Veuillez choisir une date et une heure future.");
-                return;
-            }
+           if (!timing || timing <= Date.now()) {
+               alert("Veuillez choisir une date et une heure future.");
+               return;
+           }
 
-            var encodedTiming = btoa(timing);
-            var message = document.getElementById("message").value;
-            var encodedMessage = btoa(message);
+           var encodedTiming = btoa(timing);
+           var message = document.getElementById("message").value;
+           var encodedMessage = btoa(message);
 
-            var countdownLink = "https://www.quandestcequonken.eu/countdown.html?timing=" + encodedTiming + "&message=" + encodedMessage;
+           var countdownLink = "https://www.quandestcequonken.eu/countdown.html?timing=" + encodedTiming + "&message=" + encodedMessage;
 
-            document.getElementById("countdownLink").innerHTML = "Lien de compte à rebours : <a href='" + countdownLink + "' target='_blank'>" + countdownLink + "</a>";
-        }
-    </script>
+           document.getElementById("countdownLink").innerHTML = "Lien de compte à rebours : <a href='" + countdownLink + "' target='_blank'>" + countdownLink + "</a>";
+
+           // Ajout du bouton "Copier le lien"
+           var copyButton = document.getElementById("copyButton");
+           copyButton.style.display = "block";
+           copyButton.setAttribute("data-clipboard-text", countdownLink);
+       }
+
+       // Fonction pour copier le texte dans le presse-papiers
+       function copyToClipboard() {
+           var copyText = document.getElementById("countdownLink");
+           var textArea = document.createElement("textarea");
+           textArea.value = copyText.textContent;
+           document.body.appendChild(textArea);
+           textArea.select();
+           document.execCommand('copy');
+           document.body.removeChild(textArea);
+
+           alert("Lien copié dans le presse-papiers !");
+       }
+   </script>
 </head>
 <body>
-    <h1>🍆 Quand est-ce qu'on ken ? 💦</h1>
+   <h1>🍆 QuandEstCeQuOnKen.eu 💦</h1>
+   <p>Bienvenue sur QuandEstCeQuOnKen.eu, l'outil ultime pour pimenter votre vie amoureuse ! Indiquez à votre partenaire combien de temps il doit attendre avant de "prendre cher" avec notre compte à rebours coquin. Il suffit de choisir une date et d'ajouter un message privé. C'est simple, amusant et un peu potache. 😏</p>
 
-    <label for="timing">Choisissez la date et l'heure :</label>
-    <input type="datetime-local" id="timing" required>
+   <label for="timing">Choisissez la date et l'heure :</label>
+   <input type="datetime-local" id="timing" required>
 
-    <label for="message">Ajoutez un message court :</label>
-    <input type="text" id="message">
+   <label for="message">Ajoutez un message court :</label>
+   <input type="text" id="message">
 
-    <button onclick="createCountdown()">Générer le compte à rebours</button>
+   <button onclick="createCountdown()">Générer le compte à rebours</button>
 
-    <div id="countdownLink"></div>
+   <div id="countdownLink"></div>
 
-    <hr>
+   <!-- Bouton pour copier le lien -->
+   <button id="copyButton" style="display: none;" onclick="copyToClipboard()">Copier le lien</button>
 
-    <h2>Contact</h2>
-    <p>Des questions ? Envoyez-nous un email à <a href="mailto:contact@quandestcequonken.eu">contact@quandestcequonken.eu</a>.</p>
+   <hr>
 
-    <h2>Mentions légales</h2>
-    <p>Ce site est destiné à un usage ludique. Consultez nos mentions légales pour plus d'informations.</p>
+   <h2>Contact</h2>
+   <p>Des questions ? Envoyez-nous un email à <a href="mailto:contact@quandestcequonken.eu">contact@quandestcequonken.eu</a>.</p>
+
+   <h2>Mentions légales</h2>
+   <p>Ce site est destiné à un usage ludique. Consultez nos mentions légales pour plus d'informations.</p>
 </body>
 </html>

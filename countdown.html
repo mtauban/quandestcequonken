@@ -97,17 +97,19 @@
                 // Fin du compte à rebours
                 if (countdownTime <= 0) {
                     clearInterval(countdownInterval);
-                    document.getElementById("countdown").innerText = "Temps écoulé ! 😏";
+                    document.getElementById("countdown").innerHTML = "Temps écoulé ! 😏 Alors, c'était comment ? 😉<br><a href='index.html'>Créez votre propre compte à rebours</a>";
                 }
             }, 1000);
         }
 
-        // Lancer le compte à rebours au chargement de la page
         window.onload = startCountdown;
+
     </script>
 </head>
 <body>
     <h1>Compte à Rebours 🍆💦</h1>
+    <p>Bienvenue sur QuandEstCeQuOnKen.eu, l'outil ultime pour pimenter votre vie amoureuse ! Votre partenaire a planifié quelque chose de spécial et vous allez bientôt "prendre cher". Soyez prêt(e) ! 😏</p>
+
     <p id="message"></p>
     <p id="countdown"></p>
 
