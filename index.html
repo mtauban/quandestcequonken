@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🍆 QuandEstCeQuOnKen.eu 💦</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Indie Flower', cursive;
             background-color: #f8f8f8;
             color: #333;
             margin: 0;
@@ -77,35 +78,26 @@
     </style>
     <script>
         function createCountdown() {
-            // Récupération de la date et de l'heure
             var timingInput = document.getElementById("timing");
-            var timing = timingInput.valueAsNumber;
+            var timing = new Date(timingInput.value).getTime();
 
-            // Validation de l'entrée de timing
             if (!timing || timing <= Date.now()) {
                 alert("Veuillez choisir une date et une heure future.");
                 return;
             }
 
-            // Encodage en base64 de la date et de l'heure
             var encodedTiming = btoa(timing);
-
-            // Récupération du message
             var message = document.getElementById("message").value;
-
-            // Encodage en base64 du message
             var encodedMessage = btoa(message);
 
-            // Création du lien avec les paramètres encodés
             var countdownLink = "https://www.quandestcequonken.eu/countdown.html?timing=" + encodedTiming + "&message=" + encodedMessage;
 
-            // Affichage du lien
             document.getElementById("countdownLink").innerHTML = "Lien de compte à rebours : <a href='" + countdownLink + "' target='_blank'>" + countdownLink + "</a>";
         }
     </script>
 </head>
 <body>
-    <h1>🍆 Quand est-ce qu'on ken.eu 💦 ?</h1>
+    <h1>🍆 Quand est-ce qu'on ken ? 💦</h1>
 
     <label for="timing">Choisissez la date et l'heure :</label>
     <input type="datetime-local" id="timing" required>

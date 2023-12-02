@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compte à Rebours 🍆💦</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Indie Flower', cursive;
             background-color: #f8f8f8;
             color: #333;
             margin: 0;
@@ -23,8 +24,15 @@
             margin-bottom: 20px;
         }
 
-        #message, #countdown {
-            margin: 10px 0;
+        #message {
+            font-size: 1.5em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        #countdown {
+            font-size: 2em;
+            margin-bottom: 20px;
         }
 
         hr {
@@ -75,7 +83,7 @@
             var countdownTime = params.timing - Date.now();
 
             // Affichage du message
-            document.getElementById("message").innerText = "Message : " + params.message;
+            document.getElementById("message").innerText = params.message;
 
             // Définition du compte à rebours
             var countdownInterval = setInterval(function() {
@@ -89,7 +97,7 @@
                 // Fin du compte à rebours
                 if (countdownTime <= 0) {
                     clearInterval(countdownInterval);
-                    document.getElementById("countdown").innerText = "Temps écoulé !";
+                    document.getElementById("countdown").innerText = "Temps écoulé ! 😏";
                 }
             }, 1000);
         }
@@ -99,7 +107,7 @@
     </script>
 </head>
 <body>
-    <h1>Quand est-ce que tu vas ken  🍆💦 ?</h1>
+    <h1>Compte à Rebours 🍆💦</h1>
     <p id="message"></p>
     <p id="countdown"></p>
 
