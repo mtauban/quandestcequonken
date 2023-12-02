@@ -3,7 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compte à Rebours</title>
+    <title>Compte à Rebours 🍆💦</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #ff4d79;
+            margin-bottom: 20px;
+        }
+
+        #message, #countdown {
+            margin: 10px 0;
+        }
+
+        hr {
+            margin: 20px 0;
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            color: #ff4d79;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #ff4d79;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
     <script>
         function decodeParams() {
             // Récupération des paramètres depuis l'URL
@@ -22,13 +66,13 @@
             var params = decodeParams();
 
             // Validation des paramètres
-            if (!params.timing || isNaN(params.timing) || params.timing <= 0 || !params.message) {
+            if (!params.timing || params.timing <= Date.now() || !params.message) {
                 alert("Paramètres invalides. Veuillez vérifier le lien.");
                 return;
             }
 
-            // Conversion du timing en millisecondes
-            var countdownTime = params.timing * 60 * 1000;
+            // Conversion de la date en millisecondes
+            var countdownTime = params.timing - Date.now();
 
             // Affichage du message
             document.getElementById("message").innerText = "Message : " + params.message;
@@ -55,9 +99,16 @@
     </script>
 </head>
 <body>
-    <h1>Compte à Rebours</h1>
+    <h1>Quand est-ce que tu vas ken  🍆💦 ?</h1>
     <p id="message"></p>
     <p id="countdown"></p>
+
+    <hr>
+
+    <h2>Contact</h2>
+    <p>Des questions ? Envoyez-nous un email à <a href="mailto:contact@quandestcequonken.eu">contact@quandestcequonken.eu</a>.</p>
+
+    <h2>Mentions légales</h2>
+    <p>Ce site est destiné à un usage ludique. Consultez nos mentions légales pour plus d'informations.</p>
 </body>
 </html>
-

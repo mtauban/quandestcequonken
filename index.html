@@ -3,21 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuandEstCeQuOnKen.eu</title>
+    <title>🍆 QuandEstCeQuOnKen.eu 💦</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #ff4d79;
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: #ff4d79;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #ff4d79;
+            color: #fff;
+            padding: 15px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button:hover {
+            background-color: #ff3355;
+        }
+
+        #countdownLink {
+            margin-top: 20px;
+        }
+
+        hr {
+            margin: 20px 0;
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            color: #ff4d79;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #ff4d79;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
     <script>
         function createCountdown() {
-            var timing = document.getElementById("timing").value;
-            var message = document.getElementById("message").value;
+            // Récupération de la date et de l'heure
+            var timingInput = document.getElementById("timing");
+            var timing = timingInput.valueAsNumber;
 
-            // Validation de l'entrée de timing (ajuster selon vos besoins)
-            if (!timing || isNaN(timing) || timing <= 0) {
-                alert("Veuillez entrer un timing valide en minutes.");
+            // Validation de l'entrée de timing
+            if (!timing || timing <= Date.now()) {
+                alert("Veuillez choisir une date et une heure future.");
                 return;
             }
 
-            // Encodage en base64 du message et du timing
-            var encodedMessage = btoa(message);
+            // Encodage en base64 de la date et de l'heure
             var encodedTiming = btoa(timing);
+
+            // Récupération du message
+            var message = document.getElementById("message").value;
+
+            // Encodage en base64 du message
+            var encodedMessage = btoa(message);
 
             // Création du lien avec les paramètres encodés
             var countdownLink = "https://www.quandestcequonken.eu/countdown.html?timing=" + encodedTiming + "&message=" + encodedMessage;
@@ -28,10 +105,10 @@
     </script>
 </head>
 <body>
-    <h1>QuandEstCeQuOnKen.eu</h1>
+    <h1>🍆 QuandEstCeQuOnKen.eu 💦</h1>
 
-    <label for="timing">Choisissez le timing (en minutes) :</label>
-    <input type="number" id="timing" required>
+    <label for="timing">Choisissez la date et l'heure :</label>
+    <input type="datetime-local" id="timing" required>
 
     <label for="message">Ajoutez un message court :</label>
     <input type="text" id="message">
