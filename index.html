@@ -6,23 +6,37 @@
     <title>🍆 QuandEstCeQuOnKen.eu 💦</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap">
     <style>
-        body {
+               body {
             font-family: 'Indie Flower', cursive;
             background-color: #f8f8f8;
             color: #333;
             margin: 0;
             padding: 0;
+        }
+
+        .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            padding: 20px; /* Ajout du padding */
         }
 
         h1 {
             color: #ff4d79;
             margin-bottom: 20px;
         }
+
+        /* Autres styles inchangés ... */
+
+        @media screen and (max-width: 600px) {
+            /* Styles spécifiques pour les écrans de taille maximale de 600 pixels */
+            .container {
+                padding: 10px; /* Réduire le padding pour les petits écrans si nécessaire */
+            }
+        }
+  
 
         label {
             color: #ff4d79;
@@ -115,6 +129,7 @@
 </script>
 </head>
 <body>
+    <div class="container">
    <h1>🍆 QuandEstCeQuOnKen.eu 💦</h1>
    <p>Bienvenue sur QuandEstCeQuOnKen.eu, l'outil ultime pour pimenter votre vie intime ! Indiquez à votre partenaire combien de temps il doit attendre avant de "prendre cher" avec notre compte à rebours coquin. Il suffit de choisir une date et d'ajouter un message privé. C'est simple, amusant et c'est fait pour vous être utile. 😏</p>
 
@@ -138,5 +153,7 @@
 
    <h2>Mentions légales</h2>
    <p>Ce site est destiné à un usage ludique. Les mentions légales n'ont pas encore été écrites. </p>
+</div>
+
 </body>
 </html>
