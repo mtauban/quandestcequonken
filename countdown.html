@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,11 +18,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
-        h1 {
-            color: #ff4d79;
+        header {
+            text-align: center;
             margin-bottom: 20px;
         }
 
@@ -33,6 +35,14 @@
         #countdown {
             font-size: 2em;
             margin-bottom: 20px;
+        }
+
+        #main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         hr {
@@ -55,8 +65,21 @@
         a:hover {
             text-decoration: underline;
         }
+
+        button {
+            background-color: #ff4d79;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #d62954;
+        }
     </style>
-  <script>
+ <script>
     function decodeParams() {
         // Récupération des paramètres depuis l'URL
         var urlParams = new URLSearchParams(window.location.search);
@@ -64,7 +87,7 @@
         var encodedMessage = urlParams.get('message');
 
         // Décodage des paramètres
-        var timing = atob(encodedTiming);
+        var timing = new Date(atob(encodedTiming));
         var message = atob(encodedMessage);
 
         return { timing: timing, message: message };
@@ -74,7 +97,7 @@
         var params = decodeParams();
 
         // Validation des paramètres
-        if (!params.timing || params.timing <= Date.now() || !params.message) {
+        if (!params.timing) {
             alert("Paramètres invalides. Veuillez vérifier le lien.");
             return;
         }
@@ -89,32 +112,88 @@
 
             // Affichage du compte à rebours
             if (remainingTime > 0) {
-                var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-                document.getElementById("countdown").innerText = minutes + "m " + seconds + "s";
+
+                var ct_string = "";
+
+                var delta = remainingTime / 1000 
+                var days = Math.floor(delta / 86400);
+                delta -= days * 86400;
+                if (days>0) {
+                    ct_string += days + " jours " ;
+                }
+                // calculate (and subtract) whole hours
+                var hours = Math.floor(delta / 3600) % 24;
+                delta -= hours * 3600;
+                if (hours > 0) {
+                    ct_string += hours +"h " ;
+                }
+                // calculate (and subtract) whole minutes
+                var minutes = Math.floor(delta / 60) % 60;
+                delta -= minutes * 60;
+                ct_string += minutes + "min "
+                // what's left is seconds
+                var seconds = Math.floor(delta % 60);  // in theory the modulus is not required
+                ct_string += seconds +"s"
+                
+                document.getElementById("countdown").innerText = ct_string;
             } else {
                 clearInterval(countdownInterval);
-                document.getElementById("countdown").innerHTML = "Temps écoulé ! 😏 Alors, c'était comment ? 😉<br><a href='index.html'>Créez votre propre compte à rebours</a>";
+                document.getElementById("countdown").innerHTML = "Temps écoulé ! 😏 Alors, c'était comment ? 😉";
             }
         }, 1000);
     }
+    function addToGoogleCalendar() {
+            var params = decodeParams();
+
+            // Validation des paramètres
+            if (!params.timing || params.timing <= Date.now() || !params.message) {
+                alert("Paramètres invalides. Veuillez vérifier le lien.");
+                return;
+            }
+
+            // Création des objets Date pour début et fin
+            var startDate = new Date(params.timing);
+            var endDate = new Date(startDate.getTime() + 60 * 60 * 1000); // Ajoute 1 heure à la date de début
+
+            // Formatage des dates pour l'URL
+            var formattedStartDate = startDate.toISOString().replace(/-|:|\.\d+/g, "");
+            var formattedEndDate = endDate.toISOString().replace(/-|:|\.\d+/g, "");
+
+            // Informations pour l'événement
+            var eventDetails = "QuandEstCeQuOnKen.eu - " + params.message;
+
+            // URL d'ajout à Google Agenda
+            var googleCalendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(eventDetails) + "&dates=" + formattedStartDate + "/" + formattedEndDate + "&details=" + encodeURIComponent(eventDetails) + "&location=&sf=true&output=xml";
+
+            // Redirection vers l'URL Google Agenda
+            window.location.href = googleCalendarUrl;
+        }
 </script>
 </head>
 <body onload="startCountdown()">
-<h1>Quand est-ce que tu vas ken  🍆💦 ?</h1>
-<p>Bienvenue sur QuandEstCeQuOnKen.eu ! Votre partenaire a planifié quelque chose de spécial, et vous allez bientôt "prendre cher". Soyez prêt(e) ! 😏</p>
+    <header>
+        <h1>Quand est-ce que tu vas ken  🍆💦 ?</h1>
+        <p>Bienvenue sur QuandEstCeQuOnKen.eu ! Votre partenaire a planifié quelque chose de spécial, et vous allez bientôt "prendre cher". Soyez prêt(e) ! 😏</p>
+    </header>
 
-<p id="message"></p>
-<p id="countdown"></p>
+    <div id="main-content">
+        <p id="message"></p>
+        <p id="countdown"></p>
 
-<hr>
+        <!-- Bouton pour ajouter à Google Agenda -->
+        <button onclick="addToGoogleCalendar()">Ajouter à Google Agenda</button>
+    </div>
 
-<p>Dis a ton partenaire combien de temps il doit attendre sur <a href="https://www.quandestcequonken.eu">quandestcequonken.eu</a></p>
+    <hr>
 
-<h2>Contact</h2>
-<p>Des questions ? Envoyez-nous un email à <a href="mailto:contact@quandestcequonken.eu">contact@quandestcequonken.eu</a>.</p>
+    <div>
+        <p><a href='index.html'>Créez votre propre compte à rebours</a></p>
 
-<h2>Mentions légales</h2>
-<p>Ce site est destiné à un usage ludique. Consultez nos mentions légales pour plus d'informations.</p>
+        <h2>Contact</h2>
+        <p>Des questions ? Envoyez-nous un email à <a href="mailto:contact@quandestcequonken.eu">contact@quandestcequonken.eu</a>.</p>
+
+        <h2>Mentions légales</h2>
+        <p>Ce site est destiné à un usage ludique. Les mentions légales n'ont pas encore été écrites. </p>
+    </div>
 </body>
 </html>

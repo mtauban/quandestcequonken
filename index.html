@@ -79,7 +79,7 @@
    <script>
     function createCountdown() {
         var timingInput = document.getElementById("timing");
-        var timing = new Date(timingInput.value).getTime();
+        var timing = new Date(timingInput.value);
 
         if (!timing || timing <= Date.now()) {
             alert("Veuillez choisir une date et une heure future.");
@@ -116,9 +116,9 @@
 </head>
 <body>
    <h1>🍆 QuandEstCeQuOnKen.eu 💦</h1>
-   <p>Bienvenue sur QuandEstCeQuOnKen.eu, l'outil ultime pour pimenter votre vie amoureuse ! Indiquez à votre partenaire combien de temps il doit attendre avant de "prendre cher" avec notre compte à rebours coquin. Il suffit de choisir une date et d'ajouter un message privé. C'est simple, amusant et un peu potache. 😏</p>
+   <p>Bienvenue sur QuandEstCeQuOnKen.eu, l'outil ultime pour pimenter votre vie intime ! Indiquez à votre partenaire combien de temps il doit attendre avant de "prendre cher" avec notre compte à rebours coquin. Il suffit de choisir une date et d'ajouter un message privé. C'est simple, amusant et c'est fait pour vous être utile. 😏</p>
 
-   <label for="timing">Choisissez la date et l'heure :</label>
+   <label for="timing">Choisissez la date et l'heure du bail:</label>
    <input type="datetime-local" id="timing" required>
 
    <label for="message">Ajoutez un message court :</label>
@@ -137,6 +137,6 @@
    <p>Des questions ? Envoyez-nous un email à <a href="mailto:contact@quandestcequonken.eu">contact@quandestcequonken.eu</a>.</p>
 
    <h2>Mentions légales</h2>
-   <p>Ce site est destiné à un usage ludique. Consultez nos mentions légales pour plus d'informations.</p>
+   <p>Ce site est destiné à un usage ludique. Les mentions légales n'ont pas encore été écrites. </p>
 </body>
 </html>
